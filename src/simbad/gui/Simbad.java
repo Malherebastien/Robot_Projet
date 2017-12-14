@@ -70,7 +70,6 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     Console console=null;
     AgentInspector agentInspector=null;
     boolean backgroundMode;
-    Character myChar;
     Set<Integer> keyPressed;
    
     static  Simbad simbadInstance=null;
@@ -88,7 +87,6 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
         setSize(SIZEX, SIZEY);
         createGUI();
         start(ed);
-        myChar = ((Character)simulator.getAgentList().get(0));
         desktop.addKeyListener(this);
         desktop.setFocusable(true);
         desktop.addFocusListener(this);
@@ -240,14 +238,16 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     public void keyPressed(KeyEvent e)
     {
         keyPressed.add(e.getKeyCode());
-        myChar.action(e.getKeyCode());
+        ((Character)simulator.getAgentList().get(0)).action(keyPressed);
+        ((Character)simulator.getAgentList().get(1)).action(keyPressed);
     }
 
     @Override
     public void keyReleased(KeyEvent e)
     {
         keyPressed.remove(e.getKeyCode());
-        myChar.finAction(e.getKeyCode());
+        ((Character)simulator.getAgentList().get(0)).finAction(keyPressed);
+        ((Character)simulator.getAgentList().get(1)).finAction(keyPressed);
     }
 
     @Override
