@@ -66,7 +66,7 @@ public class BallAgent extends SimpleAgent {
    
     /** Create 3D geometry. */
     protected void create3D(){
-         Appearance  appear = new Appearance();
+        Appearance  appear = new Appearance();
         
         material.setDiffuseColor(color);
         material.setSpecularColor(black);
