@@ -39,6 +39,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import projet.Audio;
 import simbad.demo.DemoManager;
 import simbad.sim.Agent;
 import simbad.sim.EnvironmentDescription;
@@ -70,10 +71,10 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     Console console=null;
     AgentInspector agentInspector=null;
     boolean backgroundMode;
-    Character myChar;
     Set<Integer> keyPressed;
    
     static  Simbad simbadInstance=null;
+    Audio audi;
     
     
     
@@ -88,12 +89,13 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
         setSize(SIZEX, SIZEY);
         createGUI();
         start(ed);
-        myChar = ((Character)simulator.getAgentList().get(0));
         desktop.addKeyListener(this);
         desktop.setFocusable(true);
         desktop.addFocusListener(this);
         setVisible(true);
         desktop.requestFocus();
+        audi = new Audio ( "projet/songFile/ChipzelCourtesyOST.wav" );
+        audi.jouerEnBoucle();
     }
  
 
@@ -108,6 +110,7 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     
     /** Starts (or Restarts after releaseRessources) the world and simulator.*/
     private void start(EnvironmentDescription ed){
+
         System.out.println("Starting environmentDescription: "+ed.getClass().getName());
         world = new World(ed);
         simulator = new Simulator(desktop, world, ed);
@@ -115,6 +118,7 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
         if (backgroundMode) {
             runBackgroundMode();
         }
+
     }
     
     /** Release all ressources. */
@@ -240,14 +244,16 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     public void keyPressed(KeyEvent e)
     {
         keyPressed.add(e.getKeyCode());
-        myChar.action(e.getKeyCode());
+        ((Character)simulator.getAgentList().get(0)).action(keyPressed);
+        ((Character)simulator.getAgentList().get(1)).action(keyPressed);
     }
 
     @Override
     public void keyReleased(KeyEvent e)
     {
         keyPressed.remove(e.getKeyCode());
-        myChar.finAction(e.getKeyCode());
+        ((Character)simulator.getAgentList().get(0)).finAction(keyPressed);
+        ((Character)simulator.getAgentList().get(1)).finAction(keyPressed);
     }
 
     @Override

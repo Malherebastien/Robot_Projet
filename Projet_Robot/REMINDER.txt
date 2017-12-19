@@ -1,0 +1,7 @@
+Alors, Simbad passe par ControlWindow pour communiquer.
+Il faut refaire un ControlWindow je pense. A tester.
+Alt + F7 pour chercher les appels.
+
+UPDATE
+Ça à marché, maintenant CharacterControlGUI est appelé. Les gens vont cancérisé quand ils vont devoir le faire.
+Maintenant faire bouger le robot avec flèches, et on sera bon.

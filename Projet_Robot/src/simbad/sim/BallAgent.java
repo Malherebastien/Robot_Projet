@@ -34,6 +34,7 @@ import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 import com.sun.j3d.utils.geometry.Primitive;
 import com.sun.j3d.utils.geometry.Sphere;
+import projet.Character;
 
 /**
  * @author louis
@@ -66,7 +67,7 @@ public class BallAgent extends SimpleAgent {
    
     /** Create 3D geometry. */
     protected void create3D(){
-         Appearance  appear = new Appearance();
+        Appearance  appear = new Appearance();
         
         material.setDiffuseColor(color);
         material.setSpecularColor(black);
@@ -87,6 +88,21 @@ public class BallAgent extends SimpleAgent {
 	    Bounds bounds = new BoundingSphere(new Point3d(0,0,0),radius);
 	    setBounds(bounds);
    
+    }
+
+    public void performBehavior()
+    {
+
+        if ( this.collisionDetected() )
+        {
+
+            //this.setTranslationalVelocity(0);
+            //this.resetPosition();
+            System.out.println(" buuuuuuuuuuuuuuuuuuuuut ");
+           // this.reset();
+            //moveToStartPosition();
+        }
+
     }
 
 }
