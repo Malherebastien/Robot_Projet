@@ -73,7 +73,7 @@ public class Character extends Agent
             if (!this.directionBinary[3])
                 this.directionBinary[3] = true;
         if (this.directionBinary[0] || this.directionBinary[1] || this.directionBinary[2] || this.directionBinary[3])
-            this.setTranslationalVelocity(2);
+            this.setTranslationalVelocity(4);
     }
 
     private void rotate(double angle)

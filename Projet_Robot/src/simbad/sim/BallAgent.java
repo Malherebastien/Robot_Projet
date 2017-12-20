@@ -85,7 +85,7 @@ public class BallAgent extends SimpleAgent {
         addChild(body);
      	    
 	    // Add bounds for interactions
-	    Bounds bounds = new BoundingSphere(new Point3d(0,0,0),radius);
+	    BoundingSphere bounds = new BoundingSphere(new Point3d(0,0,0),radius);
 	    setBounds(bounds);
    
     }
@@ -93,7 +93,7 @@ public class BallAgent extends SimpleAgent {
     public void performBehavior()
     {
 
-        if ( this.collisionDetected() )
+        /*if ( this.collisionDetected() )
         {
 
             //this.setTranslationalVelocity(0);
@@ -101,7 +101,7 @@ public class BallAgent extends SimpleAgent {
             System.out.println(" buuuuuuuuuuuuuuuuuuuuut ");
            // this.reset();
             //moveToStartPosition();
-        }
+        }*/
 
     }
 

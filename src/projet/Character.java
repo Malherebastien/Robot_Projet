@@ -3,6 +3,8 @@ package projet;
 import simbad.sim.Agent;
 import simbad.sim.LaserAgent;
 
+import javax.media.j3d.Transform3D;
+import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 
 import java.awt.event.KeyEvent;
@@ -18,12 +20,19 @@ public class Character extends Agent
     double speed;
     double rotation;
     boolean directionBinary[];
-    int up, left, down, right;
+    int up, left, down, right, tir;
+    boolean recharge;
+    LaserAgent[] munitions;
+    Point3d tmp;
+    Transform3D t3d;
 
-    public Character(Vector3d position, String name, int up, int left, int down, int right)
+    int numLaser;
+
+    public Character(Vector3d position, String name, LaserAgent[] munitions, int up, int left, int down, int right, int tir)
     {
         super(position, name);
         this.pos = position;
+        this.munitions = munitions;
         this.speed = BASE_SPEED;
         this.rotation = 0.0;
         this.directionBinary = new boolean[4];
@@ -31,6 +40,11 @@ public class Character extends Agent
         this.left = left;
         this.down = down;
         this.right = right;
+        this.tir = tir;
+        this.recharge = true;
+        this.numLaser = 0;
+        this.t3d = new Transform3D();
+        this.tmp = new Point3d();
     }
 
     public void initBehavior()
@@ -74,6 +88,28 @@ public class Character extends Agent
                 this.directionBinary[3] = true;
         if (this.directionBinary[0] || this.directionBinary[1] || this.directionBinary[2] || this.directionBinary[3])
             this.setTranslationalVelocity(2);
+        if (keyPressed.contains(this.tir))
+            tir();
+    }
+
+    private void tir()
+    {
+        if (this.recharge)
+        {
+            this.recharge = false;
+            this.getCoords(tmp);
+            this.getRotationTransform(t3d);
+            System.out.println("t3d = " + t3d);
+            System.out.println(tmp);
+            if (this.numLaser == this.munitions.length-1)
+                this.numLaser = 0;
+            else
+                this.numLaser++;
+            System.out.println(this.munitions[numLaser].getName());
+            this.munitions[numLaser].tir(new Vector3d(tmp), this.rotation);
+
+        }
+
     }
 
     private void rotate(double angle)
@@ -103,6 +139,9 @@ public class Character extends Agent
                 this.directionBinary[3] = false;
         if (!this.directionBinary[0] && !this.directionBinary[1] && !this.directionBinary[2] && !this.directionBinary[3])
             this.setTranslationalVelocity(0);
+
+        if (!keyPressed.contains(this.tir))
+            this.recharge = true;
 
     }
 

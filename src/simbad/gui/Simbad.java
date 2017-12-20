@@ -39,6 +39,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.hardcode.jxinput.event.JXInputButtonEvent;
+import de.hardcode.jxinput.event.JXInputButtonEventListener;
+import de.hardcode.jxinput.event.JXInputEventManager;
 import simbad.demo.DemoManager;
 import simbad.sim.Agent;
 import simbad.sim.EnvironmentDescription;
@@ -79,6 +82,7 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     /** Construct Simbad application with the given environement description */
     public Simbad(EnvironmentDescription ed, boolean backgroundMode) {
         super("Simbad  - version "+ version);
+        System.load("C:\\Users\\pyrom\\Desktop\\Cours\\S3\\CPOA\\Projet_Robot\\JXInput_0.3.4\\jxinput.dll");
         simbadInstance = this;
         keyPressed = new HashSet<>();
         this.backgroundMode = backgroundMode;
@@ -267,5 +271,4 @@ public class Simbad extends JFrame implements ActionListener, KeyListener, Focus
     {
         desktop.requestFocus();
     }
-
 }

@@ -7,6 +7,7 @@ import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 import java.awt.event.KeyEvent;
 
+
 public class MyEnv extends EnvironmentDescription
 {
     public MyEnv()
@@ -15,6 +16,9 @@ public class MyEnv extends EnvironmentDescription
 
         Wall w1 = new Wall(new Vector3d(9, 0, 0), 19, 2, this);
         w1.rotate90(1);
+
+
+
         add(w1);
         Wall w2 = new Wall(new Vector3d(-9, 0, 0), 19, 2, this);
         w2.rotate90(1);
@@ -32,11 +36,11 @@ public class MyEnv extends EnvironmentDescription
         Box b2 = new Box(new Vector3d(-9, 0, 0), new Vector3f(1, 3, 5),this);
         add(b2);
 
-        /*Box b3 = new Box(new Vector3d(0, 0, 9), new Vector3f(19, 2, 1),this);
-        add(b3);
 
-        Box b4 = new Box(new Vector3d(0, 0, -9), new Vector3f(19, 2, 1),this);
-        add(b4);*/
+        add(new RobotMur(new Vector3d(9,0,0), "mur"));
+        add(new RobotMur(new Vector3d(10,0,0), "mur"));
+        add(new RobotMur(new Vector3d(11,0,0), "mur"));
+        add(new RobotMur(new Vector3d(12,0,0), "mur"));
 
 
         add( new BallAgent( new Vector3d (1   ,0   ,1   ), "bouboule",

@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="j3d_lib" level="project" />
+    <orderEntry type="library" name="jxinput" level="project" />
   </component>
 </module>

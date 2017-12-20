@@ -12,22 +12,17 @@ import com.sun.j3d.utils.geometry.Primitive;
 import com.sun.j3d.utils.geometry.Sphere;
 
 public class LaserAgent extends Agent
-{
-    Vector3d step;
+{;
     Vector3d basePosition;
     Color3f color;
     float radius;
-    double angle;
-    long speed;
     double rotation;
 
-    public LaserAgent(Vector3d pos, String name, double angle, long speed, float radius)
+    public LaserAgent(Vector3d pos, String name, float radius)
     {
         super(pos, name);
         this.basePosition = pos;
         this.color = new Color3f(1f,0.2f,0.05f);
-        this.angle = angle;
-        this.speed = speed;
         this.radius = radius;
         this.rotation = 0;
     }
@@ -58,12 +53,11 @@ public class LaserAgent extends Agent
 
     public void initBehavior()
     {
-        rotate(angle);
     }
 
     public void performBehavior()
     {
-        this.setTranslationalVelocity(speed);
+
     }
 
     private void rotate(double angle)
@@ -76,5 +70,12 @@ public class LaserAgent extends Agent
             this.rotateY(Math.PI/4);
 
         }
+    }
+
+    public void tir(Vector3d pos, double angle)
+    {
+        this.moveToPosition(pos);
+        this.rotate(angle);
+        this.setTranslationalVelocity(12);
     }
 }
