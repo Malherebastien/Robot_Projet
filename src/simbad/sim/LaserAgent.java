@@ -12,16 +12,14 @@ import com.sun.j3d.utils.geometry.Primitive;
 import com.sun.j3d.utils.geometry.Sphere;
 
 public class LaserAgent extends Agent
-{;
-    Vector3d basePosition;
+{
     Color3f color;
     float radius;
-    double rotation;
+    private double rotation;
 
     public LaserAgent(Vector3d pos, String name, float radius)
     {
         super(pos, name);
-        this.basePosition = pos;
         this.color = new Color3f(1f,0.2f,0.05f);
         this.radius = radius;
         this.rotation = 0;
@@ -62,6 +60,7 @@ public class LaserAgent extends Agent
 
     private void rotate(double angle)
     {
+        this.rotation = 0;
         while (this.rotation != angle)
         {
             if (this.rotation == Math.PI*2)
